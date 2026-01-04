@@ -6,6 +6,12 @@ This is just a silly repo that consists of code generators in different language
 def is_even(x: int) -> bool:
     # This will print the generated code and return a function of the generated code which you can call
     func = if_else_master_code(x, 'x', print_code=True, return_func=True)
-    return func() # Whether x is even or not
+    return func() # Returns whether 'x' is even or not
 
 print(is_even(10))
+```
+
+# C Version
+```c
+int is_even = printfIsEven(10) // 0 = false, 1 = true
+```
