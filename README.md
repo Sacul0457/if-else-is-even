@@ -13,5 +13,5 @@ print(is_even(10))
 
 # C Version
 ```c
-int is_even = printfIsEven(10) // 0 = false, 1 = true
+int is_even = printIsEven(10) // 0 = false, 1 = true
 ```
