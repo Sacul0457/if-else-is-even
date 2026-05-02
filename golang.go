@@ -10,10 +10,10 @@ type IsEvenOperator struct {
 	checked  uint
 	checkers uint
 	mu       sync.Mutex
-	timezone time.Location
+	timezone *time.Location
 }
 
-func New(timezone time.Location) IsEvenOperator {
+func New(timezone *time.Location) IsEvenOperator {
 	return IsEvenOperator{timezone: timezone}
 }
 
@@ -42,15 +42,20 @@ func (c *IsEvenOperator) updateChecked() {
 }
 
 func (c *IsEvenOperator) GetTime() time.Time {
-	return time.Now().In(&c.timezone)
+	return time.Now().In(c.timezone)
 }
 
 func (c *IsEvenOperator) NewChecker() func(a uint, r *bool) {
 	c.updateCheckers()
-	f := func(a uint, r *bool) {
-		go c.processCheck(a, r)
+	return func(a uint, r *bool) {
+		var wg sync.WaitGroup
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			c.processCheck(a, r)
+		}()
+		wg.Wait()
 	}
-	return f
 }
 
 func (c *IsEvenOperator) CheckingSocket(in <-chan uint) <-chan bool {
@@ -76,7 +81,7 @@ func main() {
 
 	// Step №1: Create Operator
 	loc, _ := time.LoadLocation("Europe/Moscow")
-	operator := New(*loc)
+	operator := New(loc)
 
 	// Step №2: Create Checker
 	checker := operator.NewChecker()
@@ -86,6 +91,7 @@ func main() {
 	var result bool
 
 	checker(a, &result)
+	fmt.Print("Is ", a, " even? ", result, "\n")
 
 	// Boom!
 	// You have just mastered is-even checking skill.
@@ -99,8 +105,11 @@ func main() {
 	// Step №4.2: Create Socket
 	sock := operator.CheckingSocket(ch)
 
-	// Step №4.4(Optional): Listen to checks
+	// Step №4.3: Listen to checks
+	var wg sync.WaitGroup
+	wg.Add(1)
 	go func() {
+		defer wg.Done()
 		for b := range sock {
 			fmt.Print("Is the value even? Answer: ", b, "\n")
 		}
@@ -110,11 +119,10 @@ func main() {
 	for i := range 10 {
 		ch <- uint(i)
 	}
+	close(ch)
 
 	// Step №5: Get some stats
 	fmt.Print("Checkers amount: ", operator.GetCheckers(), "\n")
 	fmt.Print("Checks made: ", operator.GetChecked(), "\n")
 	fmt.Print("Current time: ", operator.GetTime().String(), "\n")
-
-	close(ch)
 }
