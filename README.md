@@ -194,6 +194,7 @@ rustc is_even.rs
 # true
 ```
 
+[(GO TO HOME)](#table-of-contents)
 
 ## Go Version
 
@@ -222,8 +223,6 @@ go build -o my_file my_file.go
 [(GO TO HOME)](#table-of-contents)
 
 ---
-
-[(GO TO HOME)](#table-of-contents)
 
 ## Pascal Version
 
