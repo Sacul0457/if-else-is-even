@@ -15,6 +15,7 @@ This is just a silly repo that consists of code generators in different language
 2. [Rust](#rust-version)
 3. [Pascal](#pascal-version)
 4. [Standard ML](#sml-version)
+5. [Golang](#go-version)
 
 ### Esoteric languages:
 1. [HTMLish](#htmlish-version)
@@ -192,6 +193,35 @@ rustc is_even.rs
 
 # true
 ```
+
+
+## Go Version
+
+### Write the code
+
+(Examples inside)
+
+### Run the file
+
+```sh
+go run my_file.go
+```
+
+### OR Compile the code
+
+```sh
+go build -o my_file my_file.go
+```
+
+### Run the compiled code
+
+```sh
+./my_file
+```
+
+[(GO TO HOME)](#table-of-contents)
+
+---
 
 [(GO TO HOME)](#table-of-contents)
 
