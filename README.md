@@ -199,27 +199,21 @@ rustc is_even.rs
 
 ## Go Version
 
-### Write the code
-
-(Examples inside)
-
-### Run the file
+### Compile:
 
 ```sh
-go run my_file.go
+go build -o check.exe golang.go
 ```
 
-### OR Compile the code
+### Run:
 
 ```sh
-go build -o my_file my_file.go
+./check.exe 67 (any number here)
 ```
 
-### Run the compiled code
+### Or use in code exactly
 
-```sh
-./my_file
-```
+(small documentation inside)
 
 [(GO TO HOME)](#table-of-contents)
 
