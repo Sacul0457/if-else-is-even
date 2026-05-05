@@ -20,6 +20,9 @@ This is just a silly repo that consists of code generators in different language
 ### Esoteric languages:
 1. [HTMLish](#htmlish-version)
 
+### Other languages:
+1. [Docker](#docker-version)
+
 ## Python Version
 
 ### Generating the code
@@ -348,5 +351,23 @@ gfortran fortran.f95 -o a.out
 ./a.out 10 > is_even.f95
 ```
 
+
+[(GO TO HOME)](#table-of-contents)
+
+## Docker Version
+
+> Make sure you have `docker` installed.
+
+1. Build to an image:
+
+```sh
+docker build -t is-even .
+```
+
+2. Run the image:
+
+```sh
+docker run --rm is-even ./is-even 4
+```
 
 [(GO TO HOME)](#table-of-contents)
