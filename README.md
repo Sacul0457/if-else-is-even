@@ -16,6 +16,7 @@ This is just a silly repo that consists of code generators in different language
 3. [Pascal](#pascal-version)
 4. [Standard ML](#sml-version)
 5. [Golang](#go-version)
+6. [FORTRAN](#fortran-version)
 
 ### Esoteric languages:
 1. [HTMLish](#htmlish-version)
@@ -361,5 +362,20 @@ function fn() {
 - Does not support `Infinity` or `-Infinity` (an error message will display)
 - Does not support `NaN` (an error message will display)
 - The return type of `evaluate` is a string literal - "Even" or "Odd"
+
+[(GO TO HOME)](#table-of-contents)
+
+## FORTRAN Version
+
+### Usage
+1. Compile:
+```sh
+gfortran fortran.f95 -o a.out
+```
+2. Usage:
+```sh
+./a.out 10 > is_even.f95
+```
+
 
 [(GO TO HOME)](#table-of-contents)
