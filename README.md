@@ -17,6 +17,7 @@ This is just a silly repo that consists of code generators in different language
 4. [Standard ML](#sml-version)
 5. [Golang](#go-version)
 6. [FORTRAN](#fortran-version)
+7. [Zig](#zig-version)
 
 ### Esoteric languages:
 1. [HTMLish](#htmlish-version)
@@ -374,6 +375,58 @@ gfortran fortran.f95 -o a.out
 ./a.out 10 > is_even.f95
 ```
 
+
+[(GO TO HOME)](#table-of-contents)
+
+## Zig Version
+
+> Tested with Zig 0.16.0.
+
+1. Compile:
+
+```sh
+zig build-exe zig.zig
+```
+
+2. Usage:
+
+```sh
+# Unix
+./zig 67 > is_even.zig
+
+# Windows
+.\zig.exe 67 > is_even.zig
+```
+
+> [!NOTE]
+> Negative numbers work too, no separator needed:
+>
+> ```sh
+> ./zig -67 > is_even.zig
+> ```
+
+3. Compile that newly baked is_even program:
+
+```sh
+zig build-exe is_even.zig
+```
+
+4. Check the result, is 67 even?:
+
+```sh
+# Unix
+./is_even
+
+# Windows
+.\is_even.exe
+
+# false
+```
+
+> [!TIP]
+> Build the generated program in Debug mode (the default) if you want the branches to actually run.
+> In any release mode the optimizer resolves the chain away and none of its comparisons reach the
+> binary, the same way `-O2` collapses the C version.
 
 [(GO TO HOME)](#table-of-contents)
 
